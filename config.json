@@ -1,0 +1,5 @@
+{
+    "tripApiUrl": "https://localhost:44353/" ,
+    "locationApiUrl": "https://localhost:44359/",
+    "identityUrl": "https://localhost:5001/"
+}

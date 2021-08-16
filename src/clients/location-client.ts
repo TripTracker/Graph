@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from './axios/axios-instance';
 import { Location } from '../schema/location-schema';
 import {Response} from './response';
 
-var config = require('../../config.js');
+const config = require('../../config.js');
 
 export class LocationClient {
 
@@ -13,7 +13,6 @@ export class LocationClient {
             var response = await axios.get<Response<Location[]>>(`${this.baseUrl}/locations/${query}`);
             return response.data.payload;
         } catch(error) {
-            console.log(error);
             // logging...
             throw new Error();
         }

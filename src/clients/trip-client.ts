@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from './axios/axios-instance';
 import { Trip } from '../schema/trip-schema';
 import {Response} from './response';
 
-var config = require('../../config.js');
+const config = require('../../config.js');
 
 export class TripClient {
 
@@ -24,7 +24,6 @@ export class TripClient {
             return response.data.payload;
         } catch(error) {
             // logging...
-            console.log(error);
             throw new Error();
         }
     }

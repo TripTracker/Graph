@@ -3,7 +3,19 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Location {
+  continent: String
+  country: String
+  label: String
+  latitude: Float!
+  longitude: Float!
+  name: String
+  region: String
+  regionCode: String
+}
+
 type Query {
+  locations(query: String!): [Location!]
   trip(tripId: String!): Trip
   trips(userId: String!): [Trip!]!
 }

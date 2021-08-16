@@ -1,13 +1,17 @@
 import 'reflect-metadata'
-import { ApolloServer } from 'apollo-server-express'
 import * as Express from 'express'
+import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 
 import { TripResolver } from './resolvers/trip-resolver'
+import { LocationResolver } from './resolvers/location-resolver'
 
 async function main() {
   const schema = await buildSchema({
-    resolvers: [TripResolver],
+    resolvers: [
+      TripResolver, 
+      LocationResolver
+    ],
     emitSchemaFile: true,
   })
 

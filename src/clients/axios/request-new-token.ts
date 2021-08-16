@@ -17,10 +17,6 @@ export const requestNewTokenAndRetry = async (instance: AxiosInstance, originalR
     if (res.status === 200) {
         Store.accessToken = res.data.access_token;
 
-        // 3) return originalRequest object with Axios.
-        const bloop = await instance(originalRequest);
-        console.log(bloop.data);
-
-        return bloop;
+        return await instance(originalRequest);
     }
 }

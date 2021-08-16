@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Trip } from '../schema/trip-schema';
 import {Response} from './response';
 
-var config = require('../config.js');
+var config = require('../../config.js');
 
 export class TripClient {
 

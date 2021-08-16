@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Location } from '../schema/location-schema';
 import {Response} from './response';
 
-var config = require('../config.js');
+var config = require('../../config.js');
 
 export class LocationClient {
 

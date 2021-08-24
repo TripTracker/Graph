@@ -5,7 +5,7 @@ export const handleFailedRequest = async (instance: AxiosInstance, error: AxiosE
     if (error.response.status === 401) { 
         return await requestNewTokenAndRetry(instance, error.config);
     } else{ 
-        console.error('Request failed');
+        console.error(error.response);
         return Promise.reject();
     };
 }

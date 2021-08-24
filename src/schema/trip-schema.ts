@@ -3,7 +3,7 @@ import { Field, ObjectType, InputType } from 'type-graphql'
 @ObjectType()
 export class Trip {
   @Field()
-  id: number
+  id: string
 
   @Field()
   userId: string;
@@ -28,11 +28,41 @@ export class Stop {
   longitude: number;
 }
 
-// @InputType()
-// export class TodoInput implements Partial<Todo> {
-//   @Field()
-//   title: string
+@InputType()
+export class CreateTripInput {
+  @Field()
+  userId: string;
 
-//   @Field()
-//   description: string
-// }
+  @Field({ nullable: true })
+  date: string;
+
+  @Field(type => [StopInput])
+  stops: StopInput[];
+}
+
+@InputType()
+export class UpdateTripInput {
+  @Field()
+  id: string
+
+  @Field()
+  userId: string;
+
+  @Field({ nullable: true })
+  date: string;
+
+  @Field(type => [StopInput])
+  stops: StopInput[];
+}
+
+@InputType()
+export class StopInput {
+  @Field()
+  description: string;
+
+  @Field()
+  latitude: number;
+
+  @Field()
+  longitude: number;
+}

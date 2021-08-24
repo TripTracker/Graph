@@ -3,6 +3,12 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input CreateTripInput {
+  date: String
+  stops: [StopInput!]!
+  userId: String!
+}
+
 type Location {
   continent: String
   country: String
@@ -12,6 +18,11 @@ type Location {
   name: String
   region: String
   regionCode: String
+}
+
+type Mutation {
+  addTrip(trip: CreateTripInput!): Trip!
+  updateTrip(trip: UpdateTripInput!): Trip!
 }
 
 type Query {
@@ -26,9 +37,22 @@ type Stop {
   longitude: Float!
 }
 
+input StopInput {
+  description: String!
+  latitude: Float!
+  longitude: Float!
+}
+
 type Trip {
   date: String
-  id: Float!
+  id: String!
   stops: [Stop!]!
+  userId: String!
+}
+
+input UpdateTripInput {
+  date: String
+  id: String!
+  stops: [StopInput!]!
   userId: String!
 }

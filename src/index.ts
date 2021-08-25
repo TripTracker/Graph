@@ -7,6 +7,7 @@ import { TripResolver } from './resolvers/trip-resolver'
 import { LocationResolver } from './resolvers/location-resolver'
 
 async function main() {
+
   const schema = await buildSchema({
     resolvers: [
       TripResolver, 
@@ -14,6 +15,9 @@ async function main() {
     ],
     emitSchemaFile: true,
   })
+
+  const PORT = 2020;
+  const HOST = '0.0.0.0';
 
   const app = Express()
 
@@ -24,8 +28,8 @@ async function main() {
   await server.start();
   server.applyMiddleware({ app })
 
-  app.listen(4000, () =>
-    console.log('Server is running on http://localhost:4000/graphql')
+  app.listen(PORT, HOST, () =>
+    console.log('Server is running on port 2020')
   )
 }
 

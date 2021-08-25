@@ -5,7 +5,7 @@ var path = require('path');
 const config = convict({
   env: {
     doc: 'The application environment.',
-    format: ['prod', 'dev', 'test'],
+    format: ['prod', 'dev'],
     default: 'dev',
     env: 'NODE_ENV'
   },
@@ -30,6 +30,18 @@ const config = convict({
 var env = config.get('env');
 
 config.loadFile(path.join(__dirname,`./config.${env}.json`));
+
+if(process.env.CONFIG_TRIPAPIURL) {
+  config.set('tripApiUrl', process.env.CONFIG_TRIPAPIURL)
+}
+
+if(process.env.CONFIG_LOCATIONAPIURL) {
+  config.set('locationApiUrl', process.env.CONFIG_LOCATIONAPIURL)
+}
+
+if(process.env.CONFIG_IDENTITYURL) {
+  config.set('identityUrl', process.env.CONFIG_IDENTITYURL)
+}
 
 // Perform validation
 config.validate({allowed: 'strict'});

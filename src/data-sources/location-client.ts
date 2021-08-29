@@ -13,11 +13,11 @@ export class LocationClient extends RESTDataSource<ExpressContext> {
 
     public async search(query: string): Promise<Location[]> {
         try {
-            var response = await this.get<Response<Location[]>>(`${this.baseURL}/locations/${query}`, null, this.context.req.headers);
+            var response = await this.get<Response<Location[]>>(`${this.baseURL}/locations/${query}`, null, { headers: this.context.req.headers });
             return response.payload;
         } catch(error) {
-            // logging...
-            throw new Error();
+            console.error(error);
+            throw error;
         }
     }
 }

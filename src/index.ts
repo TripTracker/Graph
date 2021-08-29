@@ -24,6 +24,7 @@ async function bootstrap() {
 
   const app = express();
 
+  // TO DO: this config needs to be typed
   const server = new ApolloServer({
     schema,
     dataSources: () => {

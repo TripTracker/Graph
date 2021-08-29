@@ -18,7 +18,7 @@ export class TripClient extends RESTDataSource<ExpressContext> {
             return response.payload;
         } catch(error) {
             console.error(error);
-            throw new Error();
+            throw error;
         }
     }
 
@@ -28,7 +28,7 @@ export class TripClient extends RESTDataSource<ExpressContext> {
             return response.payload;
         } catch(error) {
             console.error(error);
-            throw new Error();
+            throw error;
         }
     }
 
@@ -38,7 +38,7 @@ export class TripClient extends RESTDataSource<ExpressContext> {
             return response.payload;
         } catch(error) {
             console.error(error);
-            throw new Error();
+            throw error;
         }
     }
 
@@ -49,7 +49,7 @@ export class TripClient extends RESTDataSource<ExpressContext> {
             return response.payload;
         } catch(error) {
             console.error(error);
-            throw new Error();
+            throw error;
         }
     }
 }

@@ -1,14 +1,13 @@
 import 'reflect-metadata'
 import * as express from 'express'
 
-import * as config from "../config.js";
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 
 import { TripResolver } from './resolvers/trip-resolver'
 import { LocationResolver } from './resolvers/location-resolver'
-import { TripClient } from './data-sources/trip-client';
-import { LocationClient } from './data-sources/location-client';
+import { TripClient } from './data-sources/trip-client'
+import { LocationClient } from './data-sources/location-client'
 
 async function bootstrap() {
 
@@ -27,27 +26,31 @@ async function bootstrap() {
 
   const server = new ApolloServer({
     schema,
-    dataSources: () => ({
-      tripApiClient: new TripClient(),
-      locationApiClient: new LocationClient()
-    }),
-    context: ({ req }) => ({
-      req,
-      customHeaders: {
-        headers: {
-          ...req.headers,
-          credentials: 'same-origin',
-          'Content-Type': 'application/json',
-        }
+    dataSources: () => {
+      return {
+        tripApiClient: new TripClient(),
+        locationApiClient: new LocationClient()
       }
-    })
+    },
+    context: (ctx) => {
+      return {
+        ...ctx,
+          customHeaders: {
+            headers: {
+              ...ctx.req.headers,
+                credentials: 'same-origin',
+                'Content-Type': 'application/json',
+            }
+        }      
+      }
+    }
   });
 
   await server.start();
   server.applyMiddleware({ app });
 
   app.listen(PORT, HOST, () =>
-    console.log('Server is running on port 2020')
+    console.log('graph is running on port 2020')
   );
 }
 

@@ -1,14 +1,12 @@
-import { Query, Resolver, Arg } from 'type-graphql'
+import { Query, Resolver, Arg, Ctx } from 'type-graphql'
 import { Location } from '../schema/location-schema'
-import { LocationClient } from '../clients/location-client';
+import { Context } from '../data-sources/context';
 
 @Resolver((of) => Location)
 export class LocationResolver {
 
-  private locationClient : LocationClient = new LocationClient();
-
   @Query((returns) => [Location], { nullable: true })
-  public async locations(@Arg("query") query: string): Promise<Location[]> {
-     return await this.locationClient.search(query);
+  public async locations(@Arg("query") query: string, @Ctx() context: Context): Promise<Location[]> {
+     return await context.dataSources.locationApiClient.search(query);
   }
 }

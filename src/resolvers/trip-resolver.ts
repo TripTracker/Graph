@@ -1,29 +1,27 @@
-import { Query, Resolver, Mutation, Arg } from 'type-graphql'
-import { Trip, Stop, CreateTripInput, UpdateTripInput } from '../schema/trip-schema'
-import { TripClient } from '../clients/trip-client';
+import { Query, Resolver, Mutation, Arg, Ctx } from 'type-graphql'
+import { Trip, CreateTripInput, UpdateTripInput } from '../schema/trip-schema'
+import { ApolloContext } from '../server/apollo-context';
 
 @Resolver((of) => Trip)
 export class TripResolver {
 
-  private tripClient : TripClient = new TripClient();
-
   @Query((returns) => Trip, { nullable: true })
-  public async trip(@Arg("tripId") tripId: string): Promise<Trip> {
-    return await this.tripClient.fetchTrip(tripId);
+  public async trip(@Arg("tripId") tripId: string, @Ctx() context: ApolloContext): Promise<Trip> {
+    return await context.dataSources.tripApiClient.fetchTrip(tripId);
   }
 
   @Query((returns) => [Trip])
-  public async trips(@Arg("userId") userId: string): Promise<Trip[]> {
-    return await this.tripClient.fetchTrips(userId);
+  public async trips(@Arg("userId" ) userId: string, @Ctx() context: ApolloContext): Promise<Trip[]> {
+    return await context.dataSources.tripApiClient.fetchTrips(userId);
   }
 
   @Mutation(returns => Trip)
-  public async addTrip(@Arg("trip") trip: CreateTripInput) {
-    return await this.tripClient.addTrip(trip);
+  public async addTrip(@Arg("trip") trip: CreateTripInput, @Ctx() context: ApolloContext) {
+    return await context.dataSources.tripApiClient.addTrip(trip);
   }
 
   @Mutation(returns => Trip)
-  public async updateTrip(@Arg("trip") trip: UpdateTripInput) {
-    return await this.tripClient.updateTrip(trip);
+  public async updateTrip(@Arg("trip") trip: UpdateTripInput, @Ctx() context: ApolloContext) {
+    return await context.dataSources.tripApiClient.updateTrip(trip);
   }
 }

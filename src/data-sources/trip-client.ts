@@ -14,18 +14,16 @@ export class TripClient extends RESTDataSource<ExpressContext> {
 
     public async fetchTrip(tripId: string): Promise<Trip> {
         try {
-            var response = await this.get<Response<Trip>>(`${this.baseURL}/trip/${tripId}`, null, { headers: this.context.req.headers });
-            return response.payload;
+            return await this.get<Trip>(`${this.baseURL}/trip/${tripId}`, null, { headers: this.context.req.headers });
         } catch(error) {
             console.error(error);
             throw error;
         }
     }
 
-    public async fetchTrips(userId: string): Promise<Trip[]> {
+    public async fetchTrips(): Promise<Trip[]> {
         try {
-            var response = await this.get<Response<Trip[]>>(`${this.baseURL}/trips/${userId}`, null, { headers: this.context.req.headers });
-            return response.payload;
+            return await this.get<Trip[]>(`${this.baseURL}/trips`, null, { headers: this.context.req.headers });
         } catch(error) {
             console.error(error);
             throw error;
@@ -34,8 +32,8 @@ export class TripClient extends RESTDataSource<ExpressContext> {
 
     public async addTrip(trip: CreateTripInput): Promise<Trip> {
         try {
-            var response = await this.post<Response<Trip>>(`${this.baseURL}/trip`, trip, { headers: this.context.req.headers });
-            return response.payload;
+            console.warn(trip);
+            return await this.post<Trip>(`${this.baseURL}/trip`, JSON.stringify(trip), { headers: this.context.req.headers }); // TO DO - BETTER SOLUTION THAN JSON.STRINGIFY
         } catch(error) {
             console.error(error);
             throw error;
@@ -44,9 +42,7 @@ export class TripClient extends RESTDataSource<ExpressContext> {
 
     public async updateTrip(trip: UpdateTripInput): Promise<Trip> {
         try {
-            var response = await this.put<Response<Trip>>(`${this.baseURL}/trip`, trip, { headers: this.context.req.headers });
-            console.error(response.payload);
-            return response.payload;
+            return await this.put<Trip>(`${this.baseURL}/trip`, JSON.stringify(trip), { headers: this.context.req.headers }); // TO DO - BETTER SOLUTION THAN JSON.STRINGIFY
         } catch(error) {
             console.error(error);
             throw error;

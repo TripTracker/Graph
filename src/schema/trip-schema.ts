@@ -30,9 +30,6 @@ export class Stop {
 
 @InputType()
 export class CreateTripInput {
-  @Field()
-  userId: string;
-
   @Field({ nullable: true })
   date: string;
 
@@ -44,9 +41,6 @@ export class CreateTripInput {
 export class UpdateTripInput {
   @Field()
   id: string
-
-  @Field()
-  userId: string;
 
   @Field({ nullable: true })
   date: string;

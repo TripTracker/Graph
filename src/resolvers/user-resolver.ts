@@ -1,5 +1,4 @@
 import { Query, Resolver, Arg, Ctx } from 'type-graphql'
-import { Location } from '../schema/location-schema'
 import { User } from '../schema/user-schema';
 import { ApolloContext } from '../server/apollo-context';
 

@@ -6,7 +6,6 @@
 input CreateTripInput {
   date: String
   stops: [StopInput!]!
-  userId: String!
 }
 
 type Location {
@@ -28,7 +27,8 @@ type Mutation {
 type Query {
   locations(query: String!): [Location!]
   trip(tripId: String!): Trip
-  trips(userId: String!): [Trip!]!
+  trips: [Trip!]!
+  user: [User!]
 }
 
 type Stop {
@@ -54,5 +54,10 @@ input UpdateTripInput {
   date: String
   id: String!
   stops: [StopInput!]!
-  userId: String!
+}
+
+type User {
+  email: String!
+  name: String
+  picture: String
 }

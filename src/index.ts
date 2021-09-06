@@ -8,11 +8,14 @@ import { TripResolver } from './resolvers/trip-resolver'
 import { LocationResolver } from './resolvers/location-resolver'
 import { TripClient } from './data-sources/trip-client'
 import { LocationClient } from './data-sources/location-client'
+import { UserResolver } from './resolvers/user-resolver'
+import { UserClient } from './data-sources/user-client'
 
 async function bootstrap() {
 
   const schema = await buildSchema({
     resolvers: [
+      UserResolver,
       TripResolver, 
       LocationResolver
     ],
@@ -30,7 +33,8 @@ async function bootstrap() {
     dataSources: () => {
       return {
         tripApiClient: new TripClient(),
-        locationApiClient: new LocationClient()
+        locationApiClient: new LocationClient(),
+        userClient: new UserClient()
       }
     },
     context: (ctx) => {

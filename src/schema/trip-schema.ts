@@ -9,6 +9,9 @@ export class Trip {
   userId: string;
 
   @Field({ nullable: true })
+  description: string;
+
+  @Field({ nullable: true })
   date: string;
 
   @Field(type => [Stop])
@@ -33,6 +36,9 @@ export class CreateTripInput {
   @Field({ nullable: true })
   date: string;
 
+  @Field({ nullable: true })
+  description: string;
+
   @Field(type => [StopInput])
   stops: StopInput[];
 }
@@ -44,6 +50,9 @@ export class UpdateTripInput {
 
   @Field({ nullable: true })
   date: string;
+
+  @Field({ nullable: true })
+  description: string;
 
   @Field(type => [StopInput])
   stops: StopInput[];

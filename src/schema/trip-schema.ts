@@ -11,8 +11,8 @@ export class Trip {
   @Field({ nullable: true })
   description: string;
 
-  @Field({ nullable: true })
-  date: string;
+  @Field()
+  year: number;
 
   @Field(type => [Stop])
   stops: Stop[];
@@ -33,8 +33,8 @@ export class Stop {
 
 @InputType()
 export class CreateTripInput {
-  @Field({ nullable: true })
-  date: string;
+  @Field()
+  year: number;
 
   @Field({ nullable: true })
   description: string;
@@ -48,8 +48,8 @@ export class UpdateTripInput {
   @Field()
   id: string
 
-  @Field({ nullable: true })
-  date: string;
+  @Field()
+  year: number;
 
   @Field({ nullable: true })
   description: string;

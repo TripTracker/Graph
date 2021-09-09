@@ -21,9 +21,9 @@ export class TripClient extends RESTDataSource<ExpressContext> {
         }
     }
 
-    public async fetchTrips(): Promise<Trip[]> {
+    public async fetchTrips(skip: number, take: number): Promise<Trip[]> {
         try {
-            return await this.get<Trip[]>(`${this.baseURL}/trips`, null, { headers: this.context.req.headers });
+            return await this.get<Trip[]>(`${this.baseURL}/trips?skip=${skip}&take=${take}`, null, { headers: this.context.req.headers });
         } catch(error) {
             console.error(error);
             throw error;

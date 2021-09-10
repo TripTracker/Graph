@@ -5,9 +5,6 @@ export class Trip {
   @Field()
   id: string
 
-  @Field()
-  userId: string;
-
   @Field({ nullable: true })
   description: string;
 

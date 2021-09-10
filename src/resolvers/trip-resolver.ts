@@ -11,8 +11,11 @@ export class TripResolver {
   }
 
   @Query((returns) => [Trip])
-  public async trips(@Ctx() context: ApolloContext): Promise<Trip[]> {
-    return await context.dataSources.tripApiClient.fetchTrips();
+  public async trips(
+    @Arg("skip") skip: number, 
+    @Arg("take") take: number, 
+    @Ctx() context: ApolloContext): Promise<Trip[]> {
+      return await context.dataSources.tripApiClient.fetchTrips(skip, take);
   }
 
   @Mutation(returns => Trip)

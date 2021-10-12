@@ -19,6 +19,11 @@ const config = convict({
     format: String,
     default: ''
    },
+   contentApiUrl: {
+    doc: 'The Content API Base Url',
+    format: String,
+    default: ''
+   },
    identityUrl: {
     doc: 'The Identity Server Base Url',
     format: String,
@@ -41,6 +46,10 @@ if(process.env.CONFIG_LOCATIONAPIURL) {
 
 if(process.env.CONFIG_IDENTITYURL) {
   config.set('identityUrl', process.env.CONFIG_IDENTITYURL)
+}
+
+if(process.env.CONFIG_CONTENTAPIURL) {
+  config.set('contentApiUrl', process.env.CONFIG_CONTENTAPIURL)
 }
 
 // Perform validation

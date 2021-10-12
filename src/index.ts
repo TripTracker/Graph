@@ -10,6 +10,7 @@ import { TripClient } from './data-sources/trip-client'
 import { LocationClient } from './data-sources/location-client'
 import { UserResolver } from './resolvers/user-resolver'
 import { UserClient } from './data-sources/user-client'
+import { ContentClient } from './data-sources/content-client'
 
 async function bootstrap() {
 
@@ -34,6 +35,7 @@ async function bootstrap() {
       return {
         tripApiClient: new TripClient(),
         locationApiClient: new LocationClient(),
+        contentClient: new ContentClient(),
         userClient: new UserClient()
       }
     },

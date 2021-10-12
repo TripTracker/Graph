@@ -47,8 +47,8 @@ input StopInput {
 type Trip {
   description: String
   id: String!
+  imageKeys: [String!]
   stops: [Stop!]!
-  userId: String!
   year: Float!
 }
 

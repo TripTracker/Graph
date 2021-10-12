@@ -1,4 +1,4 @@
-import { Field, ObjectType, InputType } from 'type-graphql'
+import { Field, ObjectType, InputType, Query } from 'type-graphql'
 
 @ObjectType()
 export class Trip {
@@ -13,6 +13,9 @@ export class Trip {
 
   @Field(type => [Stop])
   stops: Stop[];
+
+  @Field(type => [String], { nullable: true }) 
+  imageKeys: string[];
 }
 
 @ObjectType()

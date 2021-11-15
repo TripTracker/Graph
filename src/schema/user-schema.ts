@@ -11,3 +11,18 @@ export class User {
   @Field({ nullable: true })
   name: string;
 }
+
+@ObjectType()
+export class LoginResult {
+  @Field()
+  access_token: string
+
+  @Field()
+  expires_in: number;
+
+  @Field()
+  token_type: string
+
+  @Field()
+  scope: string
+}

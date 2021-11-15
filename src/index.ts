@@ -1,14 +1,17 @@
 import 'reflect-metadata'
 import * as express from 'express'
+import { graphqlUploadExpress} from 'graphql-upload'
 
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 
 import { TripResolver } from './resolvers/trip-resolver'
 import { LocationResolver } from './resolvers/location-resolver'
+import { ContentResolver } from './resolvers/content-resolver'
+import { UserResolver } from './resolvers/user-resolver'
+
 import { TripClient } from './data-sources/trip-client'
 import { LocationClient } from './data-sources/location-client'
-import { UserResolver } from './resolvers/user-resolver'
 import { UserClient } from './data-sources/user-client'
 import { ContentClient } from './data-sources/content-client'
 
@@ -18,7 +21,8 @@ async function bootstrap() {
     resolvers: [
       UserResolver,
       TripResolver, 
-      LocationResolver
+      LocationResolver,
+      ContentResolver
     ],
     emitSchemaFile: true,
   });
@@ -50,10 +54,13 @@ async function bootstrap() {
             }
         }      
       }
-    }
+    },
   });
 
   await server.start();
+
+  app.use(graphqlUploadExpress());
+
   server.applyMiddleware({ app });
 
   app.listen(PORT, HOST, () =>

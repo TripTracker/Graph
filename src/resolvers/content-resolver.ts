@@ -1,5 +1,7 @@
-import { Query, Resolver, Arg, Ctx } from 'type-graphql'
+import { Query, Resolver, Mutation, Arg, Ctx } from 'type-graphql';
 import { ApolloContext } from '../server/apollo-context';
+import { FileUpload, GraphQLUpload } from 'graphql-upload';
+
 
 @Resolver((of) => String)
 export class ContentResolver {
@@ -9,21 +11,18 @@ export class ContentResolver {
     return await context.dataSources.contentClient.getTripImageKeys(tripId);
   }
 
-//   @Query((returns) => [Trip])
-//   public async trips(
-//     @Arg("skip") skip: number, 
-//     @Arg("take") take: number, 
-//     @Ctx() context: ApolloContext): Promise<Trip[]> {
-//       return await context.dataSources.tripApiClient.fetchTrips(skip, take);
-//   }
+  @Mutation(returns => Boolean)
+  public async addTripImage(
+    @Arg("tripId") tripId: string, 
+    @Arg("file", () => GraphQLUpload) { createReadStream }: FileUpload, 
+    @Ctx() context: ApolloContext) {
 
-//   @Mutation(returns => Trip)
-//   public async addTrip(@Arg("trip") trip: CreateTripInput, @Ctx() context: ApolloContext) {
-//     return await context.dataSources.tripApiClient.addTrip(trip);
-//   }
 
-//   @Mutation(returns => Trip)
-//   public async updateTrip(@Arg("trip") trip: UpdateTripInput, @Ctx() context: ApolloContext) {
-//     return await context.dataSources.tripApiClient.updateTrip(trip);
-//   }
+    // Invoking the `createReadStream` will return a Readable Stream.
+    // See https://nodejs.org/api/stream.html#stream_readable_streams
+    const stream = createReadStream();
+    await context.dataSources.contentClient.uploadImage(tripId, stream);
+
+    return true;
+  }
 }

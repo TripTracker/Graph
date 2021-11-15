@@ -22,11 +22,14 @@ type Location {
 
 type Mutation {
   addTrip(trip: CreateTripInput!): Trip!
+  addTripImage(file: Upload!, tripId: String!): Boolean!
   updateTrip(trip: UpdateTripInput!): Trip!
 }
 
 type Query {
+  imageKeys(tripId: String!): [String!]
   locations(query: String!): [Location!]
+  login(googleToken: String!): String
   trip(tripId: String!): Trip
   trips(skip: Float!, take: Float!): [Trip!]!
   user: User
@@ -58,6 +61,9 @@ input UpdateTripInput {
   stops: [StopInput!]!
   year: Float!
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type User {
   email: String!

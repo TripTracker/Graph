@@ -30,13 +30,13 @@ type LoginResult {
 type Mutation {
   addTrip(trip: CreateTripInput!): Trip!
   addTripImage(file: Upload!, tripId: String!): Boolean!
+  login(googleToken: String!): LoginResult
   updateTrip(trip: UpdateTripInput!): Trip!
 }
 
 type Query {
   imageKeys(tripId: String!): [String!]
   locations(query: String!): [Location!]
-  login(googleToken: String!): LoginResult
   trip(tripId: String!): Trip
   trips(skip: Float!, take: Float!): [Trip!]!
   user: User

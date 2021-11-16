@@ -1,4 +1,4 @@
-import { Query, Resolver, Arg, Ctx } from 'type-graphql'
+import { Query, Resolver, Arg, Ctx, Mutation } from 'type-graphql'
 import { LoginResult, User } from '../schema/user-schema';
 import { ApolloContext } from '../server/apollo-context';
 
@@ -9,7 +9,7 @@ export class UserResolver {
      return await context.dataSources.userClient.getUser();
   }
 
-  @Query((returns) => LoginResult, { nullable: true })
+  @Mutation((returns) => LoginResult, { nullable: true })
   public async login(@Arg("googleToken") googleToken: string, @Ctx() context: ApolloContext): Promise<LoginResult> {
      return await context.dataSources.userClient.login(googleToken);
   }

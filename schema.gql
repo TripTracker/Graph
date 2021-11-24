@@ -74,6 +74,7 @@ scalar Upload
 
 type User {
   email: String!
-  name: String
+  firstName: String
+  lastName: String
   picture: String
 }

@@ -28,7 +28,7 @@ export class UserClient extends RESTDataSource<ExpressContext> {
 
             // to do => do not hardcode
             const data = {
-                client_id: 'vue',
+                client_id: 'angular',
                 client_secret: 'fake_secret',
                 grant_type: 'delegation',
                 scope: 'graph trip-api location-api content-api openid profile',

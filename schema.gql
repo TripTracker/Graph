@@ -20,6 +20,15 @@ type Location {
   regionCode: String
 }
 
+input LoginData {
+  client_id: String!
+  client_secret: String!
+  grant_type: String!
+  provider: String!
+  scope: String!
+  token: String!
+}
+
 type LoginResult {
   access_token: String!
   expires_in: Float!
@@ -30,7 +39,7 @@ type LoginResult {
 type Mutation {
   addTrip(trip: CreateTripInput!): Trip!
   addTripImage(file: Upload!, tripId: String!): Boolean!
-  login(googleToken: String!): LoginResult
+  login(data: LoginData!): LoginResult
   updateTrip(trip: UpdateTripInput!): Trip!
 }
 

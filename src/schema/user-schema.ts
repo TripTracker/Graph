@@ -1,4 +1,4 @@
-import { Field, ObjectType } from 'type-graphql'
+import { Field, InputType, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class User {
@@ -28,4 +28,25 @@ export class LoginResult {
 
   @Field()
   scope: string
+}
+
+@InputType()
+export class LoginData {
+  @Field()
+  client_id: string
+
+  @Field()
+  client_secret: string;
+
+  @Field()
+  grant_type: string
+
+  @Field()
+  scope: string;
+
+  @Field()
+  provider: string;
+
+  @Field()
+  token: string;
 }

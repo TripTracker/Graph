@@ -1,5 +1,5 @@
 import { Query, Resolver, Arg, Ctx, Mutation } from 'type-graphql'
-import { LoginResult, User } from '../schema/user-schema';
+import { LoginData, LoginResult, User } from '../schema/user-schema';
 import { ApolloContext } from '../server/apollo-context';
 
 @Resolver((of) => User)
@@ -10,7 +10,7 @@ export class UserResolver {
   }
 
   @Mutation((returns) => LoginResult, { nullable: true })
-  public async login(@Arg("googleToken") googleToken: string, @Ctx() context: ApolloContext): Promise<LoginResult> {
-     return await context.dataSources.userClient.login(googleToken);
+  public async login(@Arg("data") data: LoginData, @Ctx() context: ApolloContext): Promise<LoginResult> {
+     return await context.dataSources.userClient.login(data);
   }
 }

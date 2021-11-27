@@ -3,7 +3,7 @@ import { Field, InputType, ObjectType } from 'type-graphql'
 @ObjectType()
 export class User {
   @Field()
-  email: string
+  email: string;
 
   @Field({ nullable: true })
   picture: string;
@@ -18,28 +18,31 @@ export class User {
 @ObjectType()
 export class LoginResult {
   @Field()
-  access_token: string
+  access_token: string;
+
+  @Field()
+  refresh_token: string;
 
   @Field()
   expires_in: number;
 
   @Field()
-  token_type: string
+  token_type: string;
 
   @Field()
-  scope: string
+  scope: string;
 }
 
 @InputType()
 export class LoginData {
   @Field()
-  client_id: string
+  client_id: string;
 
   @Field()
   client_secret: string;
 
   @Field()
-  grant_type: string
+  grant_type: string;
 
   @Field()
   scope: string;
@@ -50,3 +53,19 @@ export class LoginData {
   @Field()
   token: string;
 }
+
+@InputType()
+export class RefreshData {
+  @Field()
+  client_id: string;
+
+  @Field()
+  client_secret: string;
+
+  @Field()
+  grant_type: string;
+
+  @Field()
+  refresh_token: string;
+}
+

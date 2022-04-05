@@ -17,7 +17,7 @@ export class TripClient extends RESTDataSource<ExpressContext> {
             console.log(this.baseURL);
             console.log(config);
             console.log((this.context as any).customHeaders);
-            return await this.get<Trip>(`$https://triptracker-trip-api.herokuapp.com/trip/${tripId}`, null, { headers: (this.context as any).customHeaders });
+            return await this.get<Trip>(`https://triptracker-trip-api.herokuapp.com/trip/${tripId}`, null, { headers: (this.context as any).customHeaders });
         } catch(error) {
             console.error(error);
             throw error;

@@ -43,8 +43,12 @@ async function bootstrap() {
     },
     context: (ctx) => {
       return {
-        'Authorization': ctx.req.headers.authorization,
-        'Content-Type': 'application/json', 
+        req: {
+          headers: {
+            'Authorization': ctx.req.headers.authorization,
+            'Content-Type': 'application/json'
+          }
+        }
       }
     },
   });

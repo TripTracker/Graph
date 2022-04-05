@@ -27,9 +27,7 @@ async function bootstrap() {
     emitSchemaFile: true,
   });
 
-  const PORT = 2020;
-  const HOST = '0.0.0.0';
-
+  const PORT = +process.env.PORT || 2020;
   const app = express();
 
   // TO DO: this config needs to be typed
@@ -44,7 +42,6 @@ async function bootstrap() {
       }
     },
     context: (ctx) => {
-      console.log(`headers yo!!!`);
       console.log(ctx.req.headers);
       return {
         ...ctx,
@@ -65,11 +62,11 @@ async function bootstrap() {
 
   server.applyMiddleware({ app });
 
-  app.listen(+process.env.PORT || PORT, HOST, () =>
-    console.log(`graph is running on port ${process.env.PORT}`)
+  app.listen(PORT, () =>
+    console.log(`graph is running on port ${PORT}`)
   );
 }
 
-//process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'; // IGNORES MISSING CERT FOR LOCAL DEV, DO NOT DEPLOY LIKE THIS
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'; // IGNORES MISSING CERT FOR LOCAL DEV, DO NOT DEPLOY LIKE THIS
 
 bootstrap();

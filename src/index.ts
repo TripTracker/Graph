@@ -44,6 +44,8 @@ async function bootstrap() {
       }
     },
     context: (ctx) => {
+      console.log(`headers yo!!!`);
+      console.log(ctx.req.headers);
       return {
         ...ctx,
           customHeaders: {
@@ -64,7 +66,7 @@ async function bootstrap() {
   server.applyMiddleware({ app });
 
   app.listen(+process.env.PORT, HOST, () =>
-    console.log('graph is running')
+    console.log(`graph is running on port ${process.env.PORT}`)
   );
 }
 

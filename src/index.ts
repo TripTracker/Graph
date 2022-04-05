@@ -42,7 +42,6 @@ async function bootstrap() {
       }
     },
     context: (ctx) => {
-      console.log(ctx.req.headers);
       return {
         ...ctx,
           customHeaders: {

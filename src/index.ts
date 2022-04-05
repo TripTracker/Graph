@@ -46,8 +46,7 @@ async function bootstrap() {
         ...ctx,
           customHeaders: {
             headers: {
-              ...ctx.req.headers,
-                credentials: 'same-origin',
+                'Authorization': ctx.req.headers.authorization,
                 'Content-Type': 'application/json',
             }
         }      

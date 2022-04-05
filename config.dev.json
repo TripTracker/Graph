@@ -1,5 +1,5 @@
 {
-    "tripApiUrl": "https://localhost:44353" ,
-    "locationApiUrl": "http://localhost:4040",
-    "identityUrl": "http://localhost:5050"
+    "tripApiUrl": "https://triptracker-trip-api.herokuapp.com/" ,
+    "locationApiUrl": "https://triptracker-location-api.herokuapp.com/",
+    "identityUrl": "https://triptracker-identity.herokuapp.com/"
 }

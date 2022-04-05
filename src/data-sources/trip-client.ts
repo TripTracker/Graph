@@ -14,11 +14,7 @@ export class TripClient extends RESTDataSource<ExpressContext> {
 
     public async fetchTrip(tripId: string): Promise<Trip> {
         try {
-            console.log(this.baseURL);
-            console.log(config);
-            this.baseURL = config.tripApiUrl;
-            console.log((this.context as any).customHeaders);
-            return await this.get<Trip>(`/trip/${tripId}`, null, { headers: (this.context as any).customHeaders });
+            return await this.get<Trip>(`${this.baseURL}/trip/${tripId}`, null, { headers: this.context.req.headers });
         } catch(error) {
             console.error(error);
             throw error;

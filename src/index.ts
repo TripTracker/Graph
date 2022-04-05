@@ -28,6 +28,8 @@ async function bootstrap() {
   });
 
   const PORT = 2020;
+  const HOST = '0.0.0.0';
+
   const app = express();
 
   // TO DO: this config needs to be typed
@@ -47,6 +49,7 @@ async function bootstrap() {
           customHeaders: {
             headers: {
               ...ctx.req.headers,
+                credentials: 'same-origin',
                 'Content-Type': 'application/json',
             }
         }      
@@ -60,7 +63,7 @@ async function bootstrap() {
 
   server.applyMiddleware({ app });
 
-  app.listen(process.env.PORT || PORT, () =>
+  app.listen(+process.env.PORT, HOST, () =>
     console.log('graph is running on port 2020')
   );
 }

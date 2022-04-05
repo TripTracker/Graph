@@ -64,7 +64,7 @@ async function bootstrap() {
   server.applyMiddleware({ app });
 
   app.listen(+process.env.PORT, HOST, () =>
-    console.log('graph is running on port 2020')
+    console.log('graph is running')
   );
 }
 

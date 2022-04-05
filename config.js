@@ -33,6 +33,7 @@ const config = convict({
 
 // Load environment dependent configuration
 var env = config.get('env');
+console.error(env);
 
 config.loadFile(path.join(__dirname,`./config.${env}.json`));
 

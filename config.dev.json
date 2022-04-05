@@ -1,5 +1,5 @@
 {
-    "tripApiUrl": "http://triptracker-trip-api.herokuapp.com" ,
-    "locationApiUrl": "http://triptracker-location-api.herokuapp.com",
-    "identityUrl": "http://triptracker-identity.herokuapp.com"
+    "tripApiUrl": "https://triptracker-trip-api.herokuapp.com" ,
+    "locationApiUrl": "https://triptracker-location-api.herokuapp.com",
+    "identityUrl": "https://triptracker-identity.herokuapp.com"
 }
